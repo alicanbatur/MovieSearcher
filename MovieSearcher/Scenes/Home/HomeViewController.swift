@@ -27,18 +27,29 @@ class HomeViewController: UIViewController {
 
     private func subscribeToTableViewModel() {
         viewModel.on { [weak self] (event) in
-            switch event {
-            case .didFetchResults:
-                DispatchQueue.main.async {
+            DispatchQueue.main.async {
+                UIApplication.shared.isNetworkActivityIndicatorVisible = false
+                switch event {
+                case .didFetchResults:
                     self?.tableView.reloadData()
+                    break
+                case .didFail(let message):
+                    self?.showAlert(with: "Error!", message: message)
+                    break
+                case .scrollToTop:
+                    let indexPath = IndexPath(row: 0, section: 0)
+                    if let count = self?.tableView.visibleCells.count, count > 0 {
+                        self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
+                    }
+                    break
                 }
-                break
             }
         }
     }
     
     private func configureSearchBar() {
         searchBar.delegate = self
+        searchBar.placeholder = "Search movies"
         navigationItem.titleView = searchBar
     }
     
@@ -62,6 +73,10 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         return cell
     }
     
+    func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
+        viewModel.shouldPaginate(indexPath)
+    }
+    
     func scrollViewDidScroll(_ scrollView: UIScrollView) {
         searchBar.resignFirstResponder()
     }
@@ -73,7 +88,8 @@ extension HomeViewController: UISearchBarDelegate {
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         if let text = searchBar.text, text.count > 0 {
-            viewModel.searchMovies(with: text)
+            UIApplication.shared.isNetworkActivityIndicatorVisible = true
+            viewModel.searchMovies(with: text, isNewRequest: true)
         } else {
             showAlert(with: "Please enter text to search", message: nil)
         }

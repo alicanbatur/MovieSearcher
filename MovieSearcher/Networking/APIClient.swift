@@ -16,6 +16,8 @@ public class APIClient {
                     let response = try JSONDecoder().decode(Response.self, from: data)
                     if let movies = response.movies, movies.count > 0 {
                         completion(.success(response))
+                    } else if let movies = response.movies, movies.count == 0 {
+                        completion(.failure(MovieError.server(message: "There is no item for this search.")))
                     } else if let message = response.message {
                         completion(.failure(MovieError.server(message: message)))
                     } else {
