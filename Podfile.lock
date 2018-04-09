@@ -1,0 +1,20 @@
+PODS:
+  - Kingfisher (4.5.0)
+  - Realm (3.0.2):
+    - Realm/Headers (= 3.0.2)
+  - Realm/Headers (3.0.2)
+  - RealmSwift (3.0.2):
+    - Realm (= 3.0.2)
+
+DEPENDENCIES:
+  - Kingfisher (~> 4.0)
+  - RealmSwift
+
+SPEC CHECKSUMS:
+  Kingfisher: 26ae0473102b77b575da51960c932431e3745407
+  Realm: 6f23fd1f178a09342eac21bfa7c2bf4312a7a180
+  RealmSwift: 695393add1b8f9d5fa75dd16e6355cf3935f71e2
+
+PODFILE CHECKSUM: ed106ecd91d85add1b1bb9e22060cc4ba61b1c2d
+
+COCOAPODS: 1.2.0.beta.1
