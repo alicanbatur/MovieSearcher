@@ -27,4 +27,11 @@ class MovieCellViewModel {
     var releaseDate: String {
         return movie?.releaseDate ?? ""
     }
+    
+    var imagePath: URL? {
+        if let path = movie?.posterPath {
+            return URL(string: "http://image.tmdb.org/t/p/w200\(path)")
+        }
+        return nil
+    }
 }

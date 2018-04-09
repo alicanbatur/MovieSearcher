@@ -8,6 +8,7 @@
 
 import Foundation
 import UIKit
+import Kingfisher
 
 class MovieCell: UITableViewCell {
     
@@ -22,6 +23,8 @@ class MovieCell: UITableViewCell {
             movieTitleLabel.text = viewModel.title
             movieDescriptionLabel.text = viewModel.overview
             movieDateLabel.text = viewModel.releaseDate
+            
+            movieAvatarImageView.kf.setImage(with: viewModel.imagePath)
         }
     }
     
