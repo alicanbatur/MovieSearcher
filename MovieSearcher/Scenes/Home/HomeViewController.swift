@@ -42,6 +42,9 @@ class HomeViewController: UIViewController {
                         self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                     }
                     break
+                case .didUpdateDataType:
+                    self?.tableView.reloadData()
+                    break
                 }
             }
         }
@@ -68,31 +71,57 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell: MovieCell = tableView.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier(), for: indexPath) as! MovieCell
-        cell.viewModel = viewModel.cellViewModel(at: indexPath)
-        return cell
+        if viewModel.isSuggestionDataType {
+            let cell: SuggestionCell = tableView.dequeueReusableCell(withIdentifier: SuggestionCell.reuseIdentifier(), for: indexPath) as! SuggestionCell
+            cell.viewModel = viewModel.suggestionCellViewModel(at: indexPath)
+            return cell
+        } else {
+            let cell: MovieCell = tableView.dequeueReusableCell(withIdentifier: MovieCell.reuseIdentifier(), for: indexPath) as! MovieCell
+            cell.viewModel = viewModel.movieCellViewModel(at: indexPath)
+            return cell
+        }
     }
     
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         viewModel.shouldPaginate(indexPath)
     }
     
-    func scrollViewDidScroll(_ scrollView: UIScrollView) {
+    func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
+        tableView.deselectRow(at: indexPath, animated: true)
+        UIApplication.shared.isNetworkActivityIndicatorVisible = true
         searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
+        viewModel.searchSuggestion(at: indexPath)
     }
     
 }
 
 extension HomeViewController: UISearchBarDelegate {
     
+    func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
+        viewModel.toggleTableViewData(isSuggestion: true)
+        searchBar.showsCancelButton = true
+    }
+    
+    func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
+        viewModel.toggleTableViewData(isSuggestion: false)
+    }
+    
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
         if let text = searchBar.text, text.count > 0 {
             UIApplication.shared.isNetworkActivityIndicatorVisible = true
             viewModel.searchMovies(with: text, isNewRequest: true)
         } else {
             showAlert(with: "Please enter text to search", message: nil)
         }
+    }
+    
+    func searchBarCancelButtonClicked(_ searchBar: UISearchBar) {
+        viewModel.toggleTableViewData(isSuggestion: false)
+        searchBar.resignFirstResponder()
+        searchBar.showsCancelButton = false
     }
 
 }

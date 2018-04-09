@@ -89,6 +89,34 @@
                                             <outlet property="movieTitleLabel" destination="YP0-6i-d1g" id="WkG-rY-brN"/>
                                         </connections>
                                     </tableViewCell>
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="SuggestionCell" id="9Ka-Iw-jCx" customClass="SuggestionCell" customModule="MovieSearcher" customModuleProvider="target">
+                                        <rect key="frame" x="0.0" y="231" width="375" height="44"/>
+                                        <autoresizingMask key="autoresizingMask"/>
+                                        <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="9Ka-Iw-jCx" id="bHV-Pg-3Bg">
+                                            <rect key="frame" x="0.0" y="0.0" width="375" height="44"/>
+                                            <autoresizingMask key="autoresizingMask"/>
+                                            <subviews>
+                                                <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="KJg-SO-ndq">
+                                                    <rect key="frame" x="15" y="10" width="345" height="24"/>
+                                                    <constraints>
+                                                        <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="21" id="Vod-gW-V0l"/>
+                                                    </constraints>
+                                                    <fontDescription key="fontDescription" type="system" weight="medium" pointSize="16"/>
+                                                    <nil key="textColor"/>
+                                                    <nil key="highlightedColor"/>
+                                                </label>
+                                            </subviews>
+                                            <constraints>
+                                                <constraint firstItem="KJg-SO-ndq" firstAttribute="leading" secondItem="bHV-Pg-3Bg" secondAttribute="leading" constant="15" id="2UU-WL-8Sm"/>
+                                                <constraint firstAttribute="bottom" secondItem="KJg-SO-ndq" secondAttribute="bottom" constant="10" id="QUi-X8-gV9"/>
+                                                <constraint firstItem="KJg-SO-ndq" firstAttribute="top" secondItem="bHV-Pg-3Bg" secondAttribute="top" constant="10" id="oPb-mz-XHm"/>
+                                                <constraint firstAttribute="trailing" secondItem="KJg-SO-ndq" secondAttribute="trailing" constant="15" id="p7m-V6-k11"/>
+                                            </constraints>
+                                        </tableViewCellContentView>
+                                        <connections>
+                                            <outlet property="titleLabel" destination="KJg-SO-ndq" id="lAa-ap-J5e"/>
+                                        </connections>
+                                    </tableViewCell>
                                 </prototypes>
                                 <connections>
                                     <outlet property="dataSource" destination="2Rn-qd-iqJ" id="b4k-bu-ktP"/>

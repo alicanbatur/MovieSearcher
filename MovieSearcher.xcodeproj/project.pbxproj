@@ -28,6 +28,10 @@
 		CFE2272C207B985200E12357 /* UITableViewCell+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE2272B207B985200E12357 /* UITableViewCell+Extension.swift */; };
 		CFE30519207BC13F0042D062 /* HomeTableViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE30518207BC13F0042D062 /* HomeTableViewModel.swift */; };
 		CFE3051B207BC1500042D062 /* MovieCellViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE3051A207BC1500042D062 /* MovieCellViewModel.swift */; };
+		CFE30520207C11C20042D062 /* SuggestionRepository.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE3051F207C11C20042D062 /* SuggestionRepository.swift */; };
+		CFE30522207C12210042D062 /* SuggestionProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE30521207C12210042D062 /* SuggestionProvider.swift */; };
+		CFE30524207C1D8B0042D062 /* SuggestionViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE30523207C1D8B0042D062 /* SuggestionViewModel.swift */; };
+		CFE30528207C1EFB0042D062 /* SuggestionCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = CFE30527207C1EFB0042D062 /* SuggestionCell.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -53,6 +57,10 @@
 		CFE2272B207B985200E12357 /* UITableViewCell+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "UITableViewCell+Extension.swift"; sourceTree = "<group>"; };
 		CFE30518207BC13F0042D062 /* HomeTableViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HomeTableViewModel.swift; sourceTree = "<group>"; };
 		CFE3051A207BC1500042D062 /* MovieCellViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MovieCellViewModel.swift; sourceTree = "<group>"; };
+		CFE3051F207C11C20042D062 /* SuggestionRepository.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionRepository.swift; sourceTree = "<group>"; };
+		CFE30521207C12210042D062 /* SuggestionProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionProvider.swift; sourceTree = "<group>"; };
+		CFE30523207C1D8B0042D062 /* SuggestionViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionViewModel.swift; sourceTree = "<group>"; };
+		CFE30527207C1EFB0042D062 /* SuggestionCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SuggestionCell.swift; sourceTree = "<group>"; };
 		E49FB4A62C963C0B4B03EBC2 /* Pods_MovieSearcher.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_MovieSearcher.framework; sourceTree = BUILT_PRODUCTS_DIR; };
 		E668F8507F21B8F76E9CDB65 /* Pods-MovieSearcher.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieSearcher.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovieSearcher/Pods-MovieSearcher.release.xcconfig"; sourceTree = "<group>"; };
 		EE1F7F5F6C468BAEED027305 /* Pods-MovieSearcher.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovieSearcher.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovieSearcher/Pods-MovieSearcher.debug.xcconfig"; sourceTree = "<group>"; };
@@ -188,6 +196,7 @@
 		CF14E156207B754F00FA2453 /* Home */ = {
 			isa = PBXGroup;
 			children = (
+				CFE3051E207C11AC0042D062 /* Suggestions */,
 				CFE22726207B96DB00E12357 /* Cells */,
 				CF14E157207B755E00FA2453 /* Home.storyboard */,
 				CFE22729207B97F600E12357 /* HomeViewController.swift */,
@@ -231,10 +240,37 @@
 		CFE22726207B96DB00E12357 /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				CFE30526207C1EE90042D062 /* SuggestionCell */,
+				CFE30525207C1EC80042D062 /* MovieCell */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		CFE3051E207C11AC0042D062 /* Suggestions */ = {
+			isa = PBXGroup;
+			children = (
+				CFE3051F207C11C20042D062 /* SuggestionRepository.swift */,
+				CFE30521207C12210042D062 /* SuggestionProvider.swift */,
+			);
+			path = Suggestions;
+			sourceTree = "<group>";
+		};
+		CFE30525207C1EC80042D062 /* MovieCell */ = {
+			isa = PBXGroup;
+			children = (
 				CFE22727207B96EE00E12357 /* MovieCell.swift */,
 				CFE3051A207BC1500042D062 /* MovieCellViewModel.swift */,
 			);
-			path = Cells;
+			path = MovieCell;
+			sourceTree = "<group>";
+		};
+		CFE30526207C1EE90042D062 /* SuggestionCell */ = {
+			isa = PBXGroup;
+			children = (
+				CFE30527207C1EFB0042D062 /* SuggestionCell.swift */,
+				CFE30523207C1D8B0042D062 /* SuggestionViewModel.swift */,
+			);
+			path = SuggestionCell;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -363,19 +399,23 @@
 				CF14E152207B72FF00FA2453 /* Result.swift in Sources */,
 				CF14E148207B72FF00FA2453 /* APIClient.swift in Sources */,
 				CF14E115207B5C0800FA2453 /* Movie.swift in Sources */,
+				CFE30528207C1EFB0042D062 /* SuggestionCell.swift in Sources */,
 				CFE2272C207B985200E12357 /* UITableViewCell+Extension.swift in Sources */,
 				CF822DC0207B4ED7009751CB /* AppDelegate.swift in Sources */,
 				CF14E120207B6B5B00FA2453 /* String+Extension.swift in Sources */,
 				CFE2272A207B97F600E12357 /* HomeViewController.swift in Sources */,
 				CFE30519207BC13F0042D062 /* HomeTableViewModel.swift in Sources */,
+				CFE30524207C1D8B0042D062 /* SuggestionViewModel.swift in Sources */,
 				CF14E149207B72FF00FA2453 /* APIRequest.swift in Sources */,
 				CFE22728207B96EE00E12357 /* MovieCell.swift in Sources */,
 				CF14E119207B5C2800FA2453 /* Suggestion.swift in Sources */,
 				CF14E153207B72FF00FA2453 /* URLQueryEncoder.swift in Sources */,
 				CFE3051B207BC1500042D062 /* MovieCellViewModel.swift in Sources */,
+				CFE30520207C11C20042D062 /* SuggestionRepository.swift in Sources */,
 				CF14E14F207B72FF00FA2453 /* Response.swift in Sources */,
 				CF14E14E207B72FF00FA2453 /* MovieError.swift in Sources */,
 				CF14E155207B732500FA2453 /* Search.swift in Sources */,
+				CFE30522207C12210042D062 /* SuggestionProvider.swift in Sources */,
 				CF14E150207B72FF00FA2453 /* HTTPParameter.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

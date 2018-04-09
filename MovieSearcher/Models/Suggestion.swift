@@ -8,6 +8,6 @@
 
 import Foundation
 
-class Suggestion {
+struct Suggestion {
     var movieTitle: String?
 }
