@@ -28,7 +28,7 @@ class NetworkingTests: XCTestCase {
     
     func testRequest() {
         let expectation = self.expectation(description: "Expects movies")
-        api.send(stubSearch) { (response) in
+        api.execute(stubSearch) { (response) in
             switch response {
             case .success(let response):
                 let movies = response.movies
