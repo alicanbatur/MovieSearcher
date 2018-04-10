@@ -9,8 +9,10 @@
 import Foundation
 import UIKit
 
-extension UITableViewCell {
+extension UIView {
     
-    class func reuseIdentifier() -> String { return String(describing: self) }
+    class func reuseIdentifier() -> String {
+        return String(describing: self)
+    }
     
 }

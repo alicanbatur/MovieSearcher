@@ -22,4 +22,8 @@ public struct Search: APIRequest {
         self.query = query
         self.page = page
     }
+    
+    static func stub() -> Search {
+        return Search(query: "batman", page: Page(index: 1).index)
+    }
 }

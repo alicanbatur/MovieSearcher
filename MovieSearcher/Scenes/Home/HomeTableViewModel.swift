@@ -49,7 +49,7 @@ class HomeTableViewModel {
     
     private var movies: [Movie]?
     private var suggestions: [Suggestion]?
-    private var suggestionProvider: SuggestionProvider = SuggestionProvider()
+    private var suggestionProvider: SuggestionProvider = SuggestionProvider(environment: .prod)
     
     private var lastSearchedQuery: String?
     private var pageCountForQuery: Int?

@@ -33,7 +33,7 @@ public class APIClient {
 		task.resume()
 	}
 
-	private func endpoint<T: APIRequest>(for request: T) -> URL {
+	func endpoint<T: APIRequest>(for request: T) -> URL {
 		guard let parameters = try? URLQueryEncoder.encode(request) else { fatalError("Wrong parameters") }
 		// Construct the final URL with all the previous data
 		return URL(string: "\(baseEndpoint)\(request.resourceName)?api_key=\(apiKey)&\(parameters)")!

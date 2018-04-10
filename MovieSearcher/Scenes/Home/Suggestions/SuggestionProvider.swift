@@ -8,13 +8,20 @@
 
 import Foundation
 
+
+
 class SuggestionProvider: SuggestionRepository {
     
     let kSuggestionsKey: String = "suggestions"
     
+    private var defaults: UserDefaults?
+    
+    init(environment: Environment) {
+        self.defaults = UserDefaults(environment: environment)
+    }
+    
     func save(_ suggestion: Suggestion) {
-        let defaults = UserDefaults.standard
-        var suggestionsAsStringArray: [String] = defaults.object(forKey: kSuggestionsKey) as? [String] ?? [String]()
+        var suggestionsAsStringArray: [String] = defaults?.object(forKey: kSuggestionsKey) as? [String] ?? [String]()
         if let title = suggestion.movieTitle {
             if !suggestionsAsStringArray.contains(title) {
                 suggestionsAsStringArray.insert(title, at: 0)
@@ -28,12 +35,11 @@ class SuggestionProvider: SuggestionRepository {
                 }
             }
         }
-        defaults.set(suggestionsAsStringArray, forKey: kSuggestionsKey)
+        defaults?.set(suggestionsAsStringArray, forKey: kSuggestionsKey)
     }
     
     func fetch(completionHandler: @escaping ([Suggestion]?) -> Void) {
-        let defaults = UserDefaults.standard
-        let suggestionsAsStringArray: [String] = defaults.object(forKey: kSuggestionsKey) as? [String] ?? [String]()
+        let suggestionsAsStringArray: [String] = defaults?.object(forKey: kSuggestionsKey) as? [String] ?? [String]()
         let suggestions: [Suggestion] = suggestionsAsStringArray.map({ Suggestion(movieTitle: $0) })
         completionHandler(suggestions)
     }
