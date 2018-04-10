@@ -22,7 +22,7 @@ class SuggestionTests: XCTestCase {
     }
     
     func testStoringSuggestion() {
-        let suggestion = Suggestion(movieTitle: "superman")
+        let suggestion = Suggestion(movieTitle: "batman")
         suggestionProvider.save(suggestion)
         let expectation = self.expectation(description: "Expects batman suggestion")
         suggestionProvider.fetch { (suggestions) in
@@ -33,6 +33,7 @@ class SuggestionTests: XCTestCase {
     }
     
     func testFetchingSuggestions() {
+        testStoringSuggestion()
         let expectation = self.expectation(description: "Expects batman suggestion")
         suggestionProvider.fetch { (suggestions) in
             XCTAssertNotNil(suggestions)
