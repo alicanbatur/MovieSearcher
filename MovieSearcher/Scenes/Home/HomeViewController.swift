@@ -8,6 +8,8 @@
 
 import UIKit
 
+// This VC is responsible for only the view operations.
+// HomeTableViewModel is responsible for data operations.
 class HomeViewController: UIViewController {
 
     @IBOutlet weak var tableView: UITableView!
@@ -25,6 +27,11 @@ class HomeViewController: UIViewController {
         subscribeToTableViewModel()
     }
 
+    // MARK: - Private Helpers
+    
+    // Subscribe to viewModel for events.
+    // Ofc I can use delegation for this, but I just wanted to use another pattern here.
+    // Totally my decision.
     private func subscribeToTableViewModel() {
         viewModel.on { [weak self] (event) in
             DispatchQueue.main.async {
@@ -50,19 +57,24 @@ class HomeViewController: UIViewController {
         }
     }
     
+    // Adds searchBar into navigaitonItem
     private func configureSearchBar() {
         searchBar.delegate = self
         searchBar.placeholder = "Search movies"
         navigationItem.titleView = searchBar
     }
     
+    // A helper func to show alerts.
     private func showAlert(with title: String?, message: String?) {
         let controller = UIAlertController(title: title, message: message, preferredStyle: .alert)
         let doneAction = UIAlertAction(title: "Done", style: .default, handler: nil)
         controller.addAction(doneAction)
         present(controller, animated: true, completion: nil)
     }
+    
 }
+
+// MARK: - UITableViewDelegate, UITableViewDataSource
 
 extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
@@ -82,6 +94,7 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
         }
     }
     
+    // Calls next page if needed.
     func tableView(_ tableView: UITableView, willDisplay cell: UITableViewCell, forRowAt indexPath: IndexPath) {
         viewModel.shouldPaginate(indexPath)
     }
@@ -96,17 +109,23 @@ extension HomeViewController: UITableViewDelegate, UITableViewDataSource {
     
 }
 
+// MARK: - UISearchBarDelegate
+
 extension HomeViewController: UISearchBarDelegate {
     
+    // Toggle to suggestion when this fired.
     func searchBarTextDidBeginEditing(_ searchBar: UISearchBar) {
         viewModel.toggleTableViewData(isSuggestion: true)
         searchBar.showsCancelButton = true
     }
     
+    // Toggle to movies when this fired.
     func searchBarTextDidEndEditing(_ searchBar: UISearchBar) {
         viewModel.toggleTableViewData(isSuggestion: false)
     }
     
+    // When search (returnKey) clicked, check for text, if not nil then make search call.
+    // If it is nil, warn user.
     func searchBarSearchButtonClicked(_ searchBar: UISearchBar) {
         searchBar.resignFirstResponder()
         searchBar.showsCancelButton = false

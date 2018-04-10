@@ -8,6 +8,8 @@
 
 import Foundation
 
+// Protocol for suggestions.
+// If we want to change our repository to any other db, just implement this.
 protocol SuggestionRepository {
     func save(_ suggestion: Suggestion)
     func fetch(completionHandler: @escaping (_ suggestions: [Suggestion]?) -> Void)

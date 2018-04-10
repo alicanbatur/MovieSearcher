@@ -16,7 +16,6 @@
 		CF14E14E207B72FF00FA2453 /* MovieError.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14E13E207B72FF00FA2453 /* MovieError.swift */; };
 		CF14E14F207B72FF00FA2453 /* Response.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14E13F207B72FF00FA2453 /* Response.swift */; };
 		CF14E150207B72FF00FA2453 /* HTTPParameter.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14E141207B72FF00FA2453 /* HTTPParameter.swift */; };
-		CF14E152207B72FF00FA2453 /* Result.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14E143207B72FF00FA2453 /* Result.swift */; };
 		CF14E153207B72FF00FA2453 /* URLQueryEncoder.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14E144207B72FF00FA2453 /* URLQueryEncoder.swift */; };
 		CF14E155207B732500FA2453 /* Search.swift in Sources */ = {isa = PBXBuildFile; fileRef = CF14E154207B732500FA2453 /* Search.swift */; };
 		CF14E158207B755E00FA2453 /* Home.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = CF14E157207B755E00FA2453 /* Home.storyboard */; };
@@ -60,7 +59,6 @@
 		CF14E13E207B72FF00FA2453 /* MovieError.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = MovieError.swift; sourceTree = "<group>"; };
 		CF14E13F207B72FF00FA2453 /* Response.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Response.swift; sourceTree = "<group>"; };
 		CF14E141207B72FF00FA2453 /* HTTPParameter.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = HTTPParameter.swift; sourceTree = "<group>"; };
-		CF14E143207B72FF00FA2453 /* Result.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Result.swift; sourceTree = "<group>"; };
 		CF14E144207B72FF00FA2453 /* URLQueryEncoder.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = URLQueryEncoder.swift; sourceTree = "<group>"; };
 		CF14E154207B732500FA2453 /* Search.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Search.swift; sourceTree = "<group>"; };
 		CF14E157207B755E00FA2453 /* Home.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Home.storyboard; sourceTree = "<group>"; };
@@ -222,7 +220,6 @@
 			isa = PBXGroup;
 			children = (
 				CF14E141207B72FF00FA2453 /* HTTPParameter.swift */,
-				CF14E143207B72FF00FA2453 /* Result.swift */,
 				CF14E144207B72FF00FA2453 /* URLQueryEncoder.swift */,
 			);
 			path = Utils;
@@ -477,7 +474,6 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				CF14E152207B72FF00FA2453 /* Result.swift in Sources */,
 				CF14E148207B72FF00FA2453 /* APIClient.swift in Sources */,
 				CF14E115207B5C0800FA2453 /* Movie.swift in Sources */,
 				CFE30528207C1EFB0042D062 /* SuggestionCell.swift in Sources */,

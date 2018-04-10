@@ -9,8 +9,9 @@
 import Foundation
 import UIKit
 
-extension UIView {
+extension UITableViewCell {
     
+    // Lets me to not to use hardcoded string at cellForRow
     class func reuseIdentifier() -> String {
         return String(describing: self)
     }

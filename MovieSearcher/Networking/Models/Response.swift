@@ -1,5 +1,7 @@
 import Foundation
 
+// Top level response.
+// This can be generic. But I did it simple for the requested assignment.
 public struct Response: Decodable {
     
     public let message: String?

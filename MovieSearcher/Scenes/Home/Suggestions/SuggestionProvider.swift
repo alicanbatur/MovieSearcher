@@ -8,8 +8,6 @@
 
 import Foundation
 
-
-
 class SuggestionProvider: SuggestionRepository {
     
     let kSuggestionsKey: String = "suggestions"
@@ -20,16 +18,19 @@ class SuggestionProvider: SuggestionRepository {
         self.defaults = UserDefaults(environment: environment)
     }
     
+    // Stores suggestion into userdefaults.
     func save(_ suggestion: Suggestion) {
         var suggestionsAsStringArray: [String] = defaults?.object(forKey: kSuggestionsKey) as? [String] ?? [String]()
         if let title = suggestion.movieTitle {
             if !suggestionsAsStringArray.contains(title) {
                 suggestionsAsStringArray.insert(title, at: 0)
                 if suggestionsAsStringArray.count > 10 {
+                    // Limits to 10
                     suggestionsAsStringArray.removeLast()
                 }
             } else {
                 if let index = suggestionsAsStringArray.index(of: title) {
+                    // Brings the query which is already in the list to top.
                     suggestionsAsStringArray.remove(at: index)
                     suggestionsAsStringArray.insert(title, at: 0)
                 }

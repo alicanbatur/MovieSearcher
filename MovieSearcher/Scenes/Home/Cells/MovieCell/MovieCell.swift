@@ -17,6 +17,7 @@ class MovieCell: UITableViewCell {
     @IBOutlet weak var movieDescriptionLabel: UILabel!
     @IBOutlet weak var movieDateLabel: UILabel!
     
+    // When the viewmodel is set, populates views.
     var viewModel: MovieCellViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }

@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Responsible to hold movie data.
 class MovieCellViewModel {
     
     private var movie: Movie?

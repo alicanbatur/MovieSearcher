@@ -13,6 +13,7 @@ protocol Observable {
     func on(_ observer: @escaping (Event) -> Void)
 }
 
+// Holds pagination index.
 struct Page {
     var index: Int = 1
     
@@ -25,6 +26,7 @@ struct Page {
     }
 }
 
+// Lets viewModel to know data type to show on tableView
 enum HomeTableViewDataType {
     case movie
     case suggestion
@@ -54,6 +56,7 @@ class HomeTableViewModel {
     private var lastSearchedQuery: String?
     private var pageCountForQuery: Int?
     
+    // When did set, update tableView with desired data type.
     private var dataType: HomeTableViewDataType = .movie {
         didSet {
             switch dataType {
@@ -92,11 +95,14 @@ class HomeTableViewModel {
         return SuggestionViewModel(suggestion)
     }
     
+    // Searches movies.
+    // if isNewRequest false, it means that this request is called from pagination. So append new movies. Also checks for the last page to avoid unnecessary requests at pagination.
+    // if isNewRequest is true, make a brand new call and update movies completely.
     func searchMovies(with title: String, isNewRequest: Bool) {
         if isNewRequest { page.resetIndex() }
         lastSearchedQuery = title
         if let pageCountForQuery = pageCountForQuery, page.index > pageCountForQuery { return }
-        api.send(Search(query: title, page: page.index)) { [weak self] response in
+        api.execute(Search(query: title, page: page.index)) { [weak self] response in
             switch response {
             case .success(let response):
                 if isNewRequest {
@@ -111,6 +117,7 @@ class HomeTableViewModel {
                 }
                 self?.observer?(.didFetchResults)
             case .failure(let error):
+                // Warn user with the error message.
                 if let error = error as? MovieError {
                     switch error {
                     case .server(let message):
@@ -125,6 +132,7 @@ class HomeTableViewModel {
                 }
             }
         }
+        // prepare paging item for pagination.
         page.bumpUpIndex()
     }
     
@@ -152,6 +160,7 @@ class HomeTableViewModel {
         suggestionProvider.save(suggestion)
     }
     
+    // If any suggestion is clicked from tableView, a request with that suggestion will be made here.
     func searchSuggestion(at indexPath: IndexPath) {
         guard let suggestions = suggestions else { return }
         if indexPath.row >= suggestions.count { return }

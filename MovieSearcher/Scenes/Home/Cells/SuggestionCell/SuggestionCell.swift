@@ -12,6 +12,7 @@ class SuggestionCell: UITableViewCell {
 
     @IBOutlet weak var titleLabel: UILabel!
     
+    // When the viewmodel is set, populates views.
     var viewModel: SuggestionViewModel? {
         didSet {
             guard let viewModel = viewModel else { return }

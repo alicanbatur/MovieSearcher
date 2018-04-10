@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Userdefaults or any other dataProvider environment model.
 enum Environment: String {
     case prod = "Prod"
     case test = "Test"

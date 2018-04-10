@@ -8,6 +8,7 @@
 
 import Foundation
 
+// Responsible to hold suggesitonCell data.
 struct SuggestionViewModel {
     private var suggestion: Suggestion?
     
