@@ -53,8 +53,8 @@ class HomeTableViewModel {
     private var suggestions: [Suggestion]?
     private var suggestionProvider: SuggestionProvider = SuggestionProvider(environment: .prod)
     
-    private var lastSearchedQuery: String?
     private var pageCountForQuery: Int?
+    var lastSearchedQuery: String?
     
     // When did set, update tableView with desired data type.
     private var dataType: HomeTableViewDataType = .movie {

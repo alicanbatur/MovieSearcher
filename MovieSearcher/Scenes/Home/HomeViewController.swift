@@ -48,6 +48,7 @@ class HomeViewController: UIViewController {
                     if let count = self?.tableView.visibleCells.count, count > 0 {
                         self?.tableView.scrollToRow(at: indexPath, at: .top, animated: true)
                     }
+                    self?.searchBar.text = self?.viewModel.lastSearchedQuery
                     break
                 case .didUpdateDataType:
                     self?.tableView.reloadData()
